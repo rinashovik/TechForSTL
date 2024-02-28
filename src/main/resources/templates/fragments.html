@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
+<head th:fragment="header">
+
+    <!-- Bootstrap stylesheets and script -->
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+    <link th:href="@{/css/techno.css}" rel="stylesheet" />
+    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+
+    <title th:text="'TechNo' + ${title==null ? '' : ' :: ' + title}">Simple TechNo Learning</title>
+</head>
+
+<body>
+<nav th:fragment="nav-bar" class="navbar navbar-inverse navbar-fixed-top">
+
+    <!--<div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top justify-content-center">-->
+    <div class="container">
+        <div class="navbar-header">
+            <a th:href="@{/}" class="navbar-brand">@TechNo</a>
+
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <!--                <li> <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a></li>-->
+
+                <!--                <li><a class="navlink" th:href="@{/delete}">Delete Task</a></li>-->
+
+                <li><a th:href="@{/login}">Log In</a></li>
+                <li><a th:href="@{/login}">Log Out</a></li>
+                <li class="justify-right">
+                    <form class="d-flex form-inline md-2 justify-right" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+<div th:fragment="page-footer">
+    &copy; 2023
+</div>
+
+</body>
+</html>
