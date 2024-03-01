@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 
-<head th:fragment="header">
+<head th:fragment="head">
 
     <!-- Bootstrap stylesheets and script -->
     <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<nav th:fragment="nav-bar" class="navbar navbar-inverse navbar-fixed-top">
+<nav th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
 
     <!--<div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top justify-content-center">-->
     <div class="container">
@@ -45,3 +45,35 @@
 
 </body>
 </html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org/">-->
+<!--<head th:replace="fragments :: header"></head>-->
+
+<!--<body>-->
+<!--&lt;!&ndash;<nav th:replace="fragments :: nav-bar"></nav>&ndash;&gt;-->
+<!--<div class="container">-->
+<!--    <form method="post" class="mt-50">-->
+<!--        <div class="form-group">-->
+<!--            <label>Username-->
+<!--                <input class="form-control" th:field="${registerFormDTO.username}" />-->
+<!--            </label>-->
+<!--            <p class="error" th:errors="${registerFormDTO.username}"></p>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label>Password-->
+<!--                <input class="form-control" th:field="${registerFormDTO.password}" type="password" />-->
+<!--            </label>-->
+<!--            <p class="error" th:errors="${registerFormDTO.password}"></p>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label>Verify Password-->
+<!--                <input class="form-control" th:field="${registerFormDTO.verifyPassword}" type="password" />-->
+<!--            </label>-->
+<!--        </div>-->
+
+<!--        <input type="submit" class="btn btn-primary" value="Register" />-->
+<!--    </form>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}"></head>
+<body>
+<nav th:replace="~{fragments :: page-header}"></nav>
+
+
+<div class="container body-content g-col-8 text-white text-bg-secondary mt-3">
+
+    <h1 class="text-white text-bg-warning"><strong>User Profile</strong></h1>
+
+    <div class="container mt-3">
+        <div class="card">
+            <div class="card-header">
+                <table>
+                    <div class="container body-content">
+                        <th>
+                            <tr>
+                        <ul>
+                            <li th:each="profile : ${userProfiles}">
+                                <label th:text="${profile.first_Name}"></label>
+                                <label th:text="${profile.last_Name}"></label>
+                                <label th:text="${profile.email}"></label>
+                                <label th:text="${profile.phone_Number}"></label>
+                                <label th:text="${profile.state}"></label>
+
+                                <button class="btn btn-primary btn-md">Edit</button>
+                                <button class="btn btn-danger btn-md">Delete</button>
+                            </li>
+                        </ul>
+                            </tr>
+                        </th>
+                        <a th:href="@{'/profile/'}">Add User</a>
+                    </div>
+                </table>
+        </div>
+    </div>
+    <div class=" card card-footer">
+        <div>
+        </div>
+    </div>
+
+</div>
+</div>
+</body>
+</html>
