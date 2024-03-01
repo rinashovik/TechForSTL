@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}"></head>
+<body>
+<nav th:replace="~{fragments :: page-header}"></nav>
+
+
+<div class="container body-content g-col-8 text-white text-bg-secondary mt-3">
+
+    <h1 class="text-white text-bg-warning"><strong>This page is under development</strong></h1>
+
+
+    <div class="container mt-3">
+
+
+        <div class="card">
+            <div class="card-header">
+                <h2>User</h2>
+            </div>
+            <div >
+                <ul th:each="job : ${userProfile}">
+                    <th:block>
+
+                    <input type="checkbox" name="userProfile" th:value="${job.id}" />
+                        <label th:text="${job.first_Name}">First Name</label>
+                    <label th:text="${job.last_Name}">Last Name</label>
+                    <label th:text="${job.email}">Email</label>
+                    <label th:text="${job.phone_Number}">Phone Number</label>
+                    <label th:text="${job.state}">State</label>
+                        <button class="btn btn-primary btn-md">Edit</button>
+                        <button class="btn btn-danger btn-md">Delete</button>
+
+                    </th:block>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>
