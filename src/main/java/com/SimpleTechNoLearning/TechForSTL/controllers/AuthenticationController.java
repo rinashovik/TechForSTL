@@ -183,12 +183,6 @@ public class AuthenticationController {
     private static final String userSessionKey = "user";
 
 
-    @GetMapping(value="/")
-    public String hello(){
-
-        return "homepage";
-
-    }
 
     public User getUserFromSession(HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
@@ -209,6 +203,13 @@ public class AuthenticationController {
 
     private static void setUserInSession(HttpSession session, User user) {
         session.setAttribute(userSessionKey, user.getId());
+    }
+
+
+    @GetMapping(value="/")
+    public String hello(){
+        return "index";
+
     }
 
 
@@ -297,5 +298,10 @@ public class AuthenticationController {
         return "redirect:/login";
     }
 
+@GetMapping("/pw-reset")
+public String reSetPassword(){
 
+
+    return "password";
+}
 }

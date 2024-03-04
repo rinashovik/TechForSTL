@@ -7,40 +7,29 @@
 
 <div class="container body-content g-col-8 text-white text-bg-secondary mt-3">
 
-    <h1 class="text-white text-bg-warning"><strong>User Profile</strong></h1>
-
-    <div class="container mt-3">
-        <div class="card">
-            <div class="card-header">
-                <table>
-                    <div class="container body-content">
-                        <th>
-                            <tr>
-                        <ul>
-                            <li th:each="profile : ${userProfiles}">
-                                <label th:text="${profile.first_Name}"></label>
-                                <label th:text="${profile.last_Name}"></label>
-                                <label th:text="${profile.email}"></label>
-                                <label th:text="${profile.phone_Number}"></label>
-                                <label th:text="${profile.state}"></label>
-
-                                <button class="btn btn-primary btn-md">Edit</button>
-                                <button class="btn btn-danger btn-md">Delete</button>
-                            </li>
-                        </ul>
-                            </tr>
-                        </th>
-                        <a th:href="@{'/profile/'}">Add User</a>
-                    </div>
-                </table>
-        </div>
-    </div>
-    <div class=" card card-footer">
-        <div>
-        </div>
+    <h1 class="text-white text-bg-warning"><strong>Hello Viewers! This Page Is Under Construction!!!!</strong></h1>
     </div>
 
-</div>
-</div>
+<div class="justify-right">
+<form method="post" class="mt-50">
+    <div class="form-group">
+        <input type="text" />
+        <label th:for="first_Name">Username
+        </label>
+    </div>
+    <div class="form-group">
+        <input type="text" />
+
+        <label th:for="last_Name">Password
+        </label>
+    </div>
+    <div>
+        <button><a th:href="@{/profile/}">Login</a></button>
+<!--        <div>    <input type="submit" class="btn btn-primary" value="Sign in" /><a th:href="@{/profile}"></a>-->
+
+        </div>
+</form>
+    </div>
+<!--    </div>-->
 </body>
 </html>

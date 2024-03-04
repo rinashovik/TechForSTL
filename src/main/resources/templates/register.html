@@ -6,9 +6,11 @@
 
 <nav th:replace="~{fragments :: page-header}"></nav>
 
-<div class="container body-content g-col-8 text-white text-bg-secondary mt-3">
+<div th:fragment="register" class="container body-content g-col-8 text-white text-bg-secondary">
+<!--    <div class="container g-col-8 text-white text-bg-secondary mt-3">-->
 
-<form method="post" class="mt-50">
+<div class="container">
+    <form method="post" class="mt-75">
     <div class="form-group">
         <label>User ID
             <input class="form-control" th:field="${registerFormDTO.username}" />
@@ -38,8 +40,10 @@
     </div>
 
     <input  type="submit" class="btn btn-primary" value="Register" /><a th:href="@{/login}"></a>
+    <label> <a th:href="@{/login}">Already member Login here </a></label>
 
 </form>
+</div>
 </div>
 </body>
 </html>

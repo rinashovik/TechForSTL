@@ -22,8 +22,8 @@ import java.util.Optional;
     @GetMapping(value = "/")
     public String displayUserProfile(Model model) {
         model.addAttribute(new UserProfile());
-        model.addAttribute("title", "Profile");
-        return "profile";
+        model.addAttribute("title", "adduser");
+        return "add-user";
 
     }
 
@@ -31,9 +31,9 @@ import java.util.Optional;
     public String processCreateUserProfileForm(@ModelAttribute @Valid UserProfile newUserProfile, Errors errors, Model model) {
 
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Profile");
+            model.addAttribute("title", "adduser");
 
-            return "profile";
+            return "add-user";
         } else {
 
             model.addAttribute("title", "Profile-List");

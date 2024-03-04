@@ -20,7 +20,7 @@ public class HomeController {
         model.addAttribute("title", "List");
         model.addAttribute("userProfiles", userProfileRepository.findAll());
 
-        return "index";
+        return "user-profile";
     }
 
 
