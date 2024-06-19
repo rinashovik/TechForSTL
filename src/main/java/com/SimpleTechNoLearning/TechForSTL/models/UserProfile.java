@@ -2,22 +2,28 @@ package com.SimpleTechNoLearning.TechForSTL.models;
 
 
 import jakarta.persistence.Entity;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 
 @Entity
 public class UserProfile extends AbstractEntity{
 
     @NotNull
+    @NotBlank
     private String first_Name;
     @NotNull
+    @NotBlank
     private String last_Name;
     @NotNull
+    @NotBlank
     @Email
     private String email;
     @NotNull
+    @NotBlank
+    @Size(min = 10, max = 12, message = "valid phone number" )
     private String phone_Number;
     @NotNull
+    @NotBlank
+    @Size(min=2,max = 16)
     private String State;
 
 
@@ -57,14 +63,17 @@ public class UserProfile extends AbstractEntity{
     }
 
     public String getPhone_Number() {
+
         return phone_Number;
     }
 
     public void setPhone_Number(String phone_Number) {
+
         this.phone_Number = phone_Number;
     }
 
     public String getState() {
+
         return State;
     }
 

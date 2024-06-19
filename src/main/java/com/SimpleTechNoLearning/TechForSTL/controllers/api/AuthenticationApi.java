@@ -100,12 +100,13 @@
 //
 //                // Construct and return validation errors in the expected format
 //                Map<String, Object> response = new HashMap<>();
-//                response.put("errors", ValidationUtil.getErrorsMap(errors));
+////                Object ValidationUtil = null;
+////response.put("errors", ValidationUtil.getErrorsMap(errors));
 //                return ResponseEntity.badRequest().body(response);
 //            }
 //
 //            User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
-//            User existingUserByEmail = userRepository.findByEmail(registerFormDTO.getEmail());
+////            User existingUserByEmail = userRepository.findByEmail(registerFormDTO.getEmail());
 //
 //            if (existingUser != null) {
 //                errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
@@ -113,12 +114,12 @@
 //            return ResponseEntity.badRequest().body(Collections.singletonMap("error", "User with the given username already exists"));
 //
 //            }
-//            if (existingUserByEmail != null) {
-//                errors.rejectValue("email", "email.alreadyexists", "That email already exists, try a different one.");
-//                model.addAttribute("title", "Register");
-//            return ResponseEntity.badRequest().body(Collections.singletonMap("error", "User with the given email already exists"));
-//
-//            }
+////            if (existingUserByEmail != null) {
+////                errors.rejectValue("email", "email.alreadyexists", "That email already exists, try a different one.");
+////                model.addAttribute("title", "Register");
+////            return ResponseEntity.badRequest().body(Collections.singletonMap("error", "User with the given email already exists"));
+////
+////            }
 //
 //            String password = registerFormDTO.getPassword();
 //            String verifyPassword = registerFormDTO.getVerifyPassword();
@@ -129,11 +130,15 @@
 //
 //            }
 //
-//            User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getEmail(),registerFormDTO.getPassword(),registerFormDTO.getVerifyPassword());
+////            User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getEmail(),registerFormDTO.getPassword(),registerFormDTO.getVerifyPassword());
+//                      // User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(),registerFormDTO.getVerifyPassword());
+//
+//            User newUser = null;
 //            userRepository.save(newUser);
 //            setUserInSession(request.getSession(), newUser);
 //
-//            return "redirect:";
+//           // return "redirect:";
+//            return ResponseEntity.accepted().build();
 //        }
 //
 //        @GetMapping("/login")

@@ -182,8 +182,6 @@ public class AuthenticationController {
     private UserRepository userRepository;
     private static final String userSessionKey = "user";
 
-
-
     public User getUserFromSession(HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         if (userId == null) {
@@ -205,13 +203,11 @@ public class AuthenticationController {
         session.setAttribute(userSessionKey, user.getId());
     }
 
-
     @GetMapping(value="/")
     public String hello(){
         return "index";
 
     }
-
 
     @GetMapping("/register")
     public String displayRegistrationForm(Model model) {
@@ -235,6 +231,8 @@ public class AuthenticationController {
         if (existingUser != null) {
             errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
             model.addAttribute("title", "Register");
+//return ResponseEntity.badRequest().body(Collections.singletonMap("error", "User with the given username already exists"));
+
             return "register";
         }
 
@@ -249,8 +247,17 @@ public class AuthenticationController {
         User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword());
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
+        return "redirect:/";
 
-        return "redirect:/login";
+        //return "redirect:/login";
+       // return "redirect:/new-user";
+
+    }
+    @GetMapping("/new-user")
+    public String displayNewUser(Model model) {
+       // model.addAttribute(new LoginFormDTO());
+        model.addAttribute("title", "NewUser");
+        return "new-user";
     }
 
     @GetMapping("/login")
@@ -289,7 +296,7 @@ public class AuthenticationController {
 
         setUserInSession(request.getSession(), theUser);
 
-        return "redirect:/";
+        return "redirect:";
     }
 
     @GetMapping("/logout")
@@ -298,10 +305,45 @@ public class AuthenticationController {
         return "redirect:/login";
     }
 
-@GetMapping("/pw-reset")
-public String reSetPassword(){
+
+    @GetMapping("/help-reset")
+    public String reSetPassword(Model model) {
+        model.addAttribute(new LoginFormDTO());
+        model.addAttribute("title", "Password-reset");
+        return "Password-reset";
+    }
 
 
-    return "password";
-}
-}
+    @GetMapping("/reset")
+    public String displayResetForm(Model model) {
+        model.addAttribute(new RegisterFormDTO());
+        model.addAttribute("title", "password-reset");
+        return "resetpassword";
+    }
+    @PostMapping("/reset")
+    public String processResetPasswordForm(@ModelAttribute @Valid RegisterFormDTO resetFormDTO,
+                                          Errors errors, HttpServletRequest request,
+                                          Model model) {
+        model.addAttribute(new RegisterFormDTO());
+
+        //RegisterFormDTO resetFormDTO = null;
+        String password1 = resetFormDTO.getPassword();
+        String verifyPassword1 = resetFormDTO.getVerifyPassword();
+        if (!password1.equals(verifyPassword1)) {
+            errors.rejectValue("password", "passwords.mismatch", "Passwords do not match");
+            model.addAttribute("title", "Password");
+            return "resetpassword";
+        }
+
+        User newUser1 = new User(resetFormDTO.getUsername(), resetFormDTO.getPassword());
+        userRepository.save(newUser1);
+        setUserInSession(request.getSession(), newUser1);
+        return "redirect:/";
+    }
+
+//
+//
+//        return "password-reset";
+//    }
+
+    }

@@ -19,7 +19,7 @@
 //    public class userProfileControllerApi {
 //
 //        @Autowired
-//        private TaskRepository taskRepository;// injecting  CRUDRepository
+//        private UserProfileRepository taskRepository;// injecting  CRUDRepository
 //
 //        @PostMapping("/add")
 //        public ResponseEntity postTheTask(@RequestBody Task newTask) {
