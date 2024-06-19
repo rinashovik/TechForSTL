@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -18,12 +19,11 @@ import java.util.Optional;
 
     @Autowired
     private UserProfileRepository userProfileRepository;
-
     @GetMapping(value = "/")
     public String displayUserProfile(Model model) {
         model.addAttribute(new UserProfile());
-        model.addAttribute("title", "Profile");
-        return "profile";
+        model.addAttribute("title", "adduser");
+        return "add-user";
 
     }
 
@@ -31,15 +31,15 @@ import java.util.Optional;
     public String processCreateUserProfileForm(@ModelAttribute @Valid UserProfile newUserProfile, Errors errors, Model model) {
 
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Profile");
+            model.addAttribute("title", "adduser");
 
-            return "profile";
+            return "add-user";
         } else {
 
             model.addAttribute("title", "Profile-List");
-
             userProfileRepository.save(newUserProfile);
-            return "redirect:";
+//            return "redirect:/profile";
+            return "redirect:/profile/";
 
 
         }
@@ -66,5 +66,31 @@ import java.util.Optional;
         }
 
     }
+
+//
+//    @GetMapping("edit/{id}")
+//    public String showUpdateForm(@PathVariable List<Integer> userIds, Model model) {
+//        List<UserProfile> optUserProfile = (List<UserProfile>) userProfileRepository.findAll();
+////        .orElseThrow(() - > new IllegalArgumentException("Invalid Task Id:" + taskId));
+//        model.addAttribute("userProfile", optUserProfile);
+//        return "update-user";
+//    }
+//
+//
+//    @GetMapping("/delete")
+//    public String renderDeleteTaskForm(Model model) {
+//        model.addAttribute("userProfiles", userProfileRepository.findAll());
+//        return "delete-user";
+//    }
+//
+//    @PostMapping("/delete")
+//    public String processDeleteTaskForm(@RequestParam(required = false) int[] userId) {
+//        for (int id : userId) {
+//            userProfileRepository.deleteById(id);
+//        }
+//        return "redirect:/";
+//    }
+
+
 
 }

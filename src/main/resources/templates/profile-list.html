@@ -7,7 +7,7 @@
 
 <div class="container body-content g-col-8 text-white text-bg-secondary mt-3">
 
-    <h1 class="text-white text-bg-warning"><strong>This page is under development</strong></h1>
+    <h1 class="text-white text-bg-warning"><strong></strong></h1>
 
 
     <div class="container mt-3">
@@ -15,30 +15,43 @@
 
         <div class="card">
             <div class="card-header">
-                <h2>User</h2>
+                <h2>Edit User</h2>
             </div>
             <div >
-                <ul th:each="job : ${userProfile}">
-                    <th:block>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>State</th>
+                        <th>Action</th>
 
-                    <input type="checkbox" name="userProfile" th:value="${job.id}" />
-                        <label th:text="${job.first_Name}">First Name</label>
-                    <label th:text="${job.last_Name}">Last Name</label>
-                    <label th:text="${job.email}">Email</label>
-                    <label th:text="${job.phone_Number}">Phone Number</label>
-                    <label th:text="${job.state}">State</label>
-                        <button class="btn btn-primary btn-md">Edit</button>
-                        <button class="btn btn-danger btn-md">Delete</button>
 
-                    </th:block>
+                    </tr>
+                    </thead>
+                    <ul>
+                        <tr th:each="profile : ${userProfiles}">
+                            <th:block>
 
-                </ul>
+                                <td th:text="${profile.first_Name}"></td>
+                                <td th:text="${profile.last_Name}"></td>
+                                <td th:text="${profile.email}"></td>
+                                <td th:text="${profile.phone_Number}"></td>
+                                <td th:text="${profile.state}"></td>
+
+                                <td>
+                                    <button class="btn btn-primary btn-md g-2"><a th:href="@{'/list/userId/'}">Edit</a></button>
+                                    <button class="btn btn-danger btn-md"><a th:href="@{'/user/id/'}">Delete</a></button></td>
+                            </th:block>
+
+                        </tr>
+                    </ul>
+                </table>
             </div>
         </div>
     </div>
-
 </div>
-
-
 </body>
 </html>
