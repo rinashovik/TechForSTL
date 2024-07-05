@@ -9,7 +9,11 @@
 
     <h1 class="text-white text-bg-warning"><strong>Users Profile</strong></h1>
     <div>
-        <button class="btn btn-info"><a th:href="@{'/user/'}">Add User</a></button>
+        <button class="btn btn-success"><a th:href="@{/profile/addUser}">Add User</a></button>
+<!--        <button class="btn btn-danger"><a th:href="@{/profile/delete/}">Delete User</a></button>-->
+        <button class="btn btn-secondary"><a th:href="@{'/index'}">Cancel</a></button>
+
+
     </div>
 
     <div class="container mt-3">
@@ -19,7 +23,9 @@
 <!--                    <div class="container body-content">-->
                         <thead>
                         <tr>
-                          <th>First Name</th>
+                            <th>#</th>
+
+                            <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email</th>
                             <th>Phone Number</th>
@@ -32,21 +38,29 @@
 <tbody>
 
 <ul>
-    <tr th:each="profile : ${userProfiles}">
+    <form action='/delete' method='POST'>
         <th:block>
 
+    <tr th:each="profile : ${userProfiles}">
+<td >
+            <input type="checkbox" name="userId" th:value="${profile.id}" />
+            </td>
             <td th:text="${profile.first_Name}"></td>
             <td th:text="${profile.last_Name}"></td>
             <td th:text="${profile.email}"></td>
             <td th:text="${profile.phone_Number}"></td>
             <td th:text="${profile.state}"></td>
-
             <td>
-                <button class="btn btn-primary btn-md g-2"><a th:href="@{'/list/userId'}">Edit</a></button>
-                <button class="btn btn-danger btn-md"><a th:href="@{'/user/id/'}">Delete</a></button></td>
+                <button type="button" class="btn btn-info btn-lg g-2"><a th:href="@{'/profile/edit/' + ${profile.id}}">Edit</a></button>
+                <button type="submit" class="delete btn btn-danger btn-md">Delete</button>
+            </td>
+<!--            <button type="submit" class="btn btn-danger btn-md"><a th:href="@{'/delete/userId'}">Delete</a></button></td>-->
+
         </th:block>
 
     </tr>
+
+    </form>
 </ul>
 
 

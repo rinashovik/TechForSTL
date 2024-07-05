@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}"></head>
+<body>
+<!--<nav th:replace="~{fragments :: page-header}"></nav>-->
+
+
+<header th:replace="~{fragments :: page-header}"></header>
+<div class="container body-content text-white text-bg-warning mt-3">
+
+    <main>
+                    <h3>Delete Task</h3>
+
+
+                <form action='/delete' method='POST'>
+            <h3>Delete Task</h3>
+            <th:block th:each="profile : ${userProfiles}">
+                <label>
+                    <input type="checkbox" name="userId" th:value="${profile.id}" />
+                    <span th:text="${profile.first_Name}"></span> <!-- implicitly calls toString() -->
+                    <span th:text="${profile.last_Name}"></span> <!-- implicitly calls toString() -->
+                    <span th:text="${profile.email}"></span> <!-- implicitly calls toString() -->
+                    <span th:text="${profile.phone_Number}"></span> <!-- implicitly calls toString() -->
+
+                    <span th:text="${profile.state}"></span> <!-- implicitly calls toString() -->
+
+
+                </label><br />
+            </th:block>
+            <button class="delete btn btn-danger btn-md" type='submit'>Delete Task</button>
+        </form>
+    </main>
+</div>
+
+
+</body>
+</html>

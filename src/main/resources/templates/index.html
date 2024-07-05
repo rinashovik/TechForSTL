@@ -7,21 +7,19 @@
 
 <div class="container body-content g-col-8 text-white text-bg-secondary mt-3">
 
-    <h1 class="text-white text-bg-warning"><strong>Hello Viewers! This Page Is Under Construction!!!!</strong></h1>
-    </div>
 
 <div class="justify-center">
-<div class="container flex ml-5 text-white bg-warning">
-    <li> <a th:href="@{/}">Dashboard</a></li>
-<!--    <a th:href="@{/profile/}">Save</a>-->
-    <li> <a th:href="@{/user/}">Add User</a></li>
-    <li> <a th:href="@{/profile/}">User Profile</a></li>
-    <li> <a th:href="@{/edit/id/}">Edit User</a></li>
-    <li> <a th:href="@{/delete/id/}">Delete User</a></li>
-    <li> <a th:href="@{/settings/}">Settings</a></li>
-    <li> <a th:href="@{/contact/}">Contact</a></li>
-
+<div class="container flex ml-5 bg-gray">
+    <div>Dashboard
+    <div> <a th:href="@{/profile/addUser}">Add User</a></div>
+    <div> <a th:href="@{/profile/}">User Profile</a></div>
+        <div> <a th:href="@{'/profile/edit/' + ${userId}}">Edit</a></div>
+    <div> <a th:href="@{/delete}">Delete User</a></div>
+    <div> <a th:href="@{/settings}">Settings</a></div>
+    <div> <a th:href="@{/contact}">Contact</a></div>
+    </div>
 </div>
-<!--    </div>-->
+    </div>
+</div>
 </body>
 </html>

@@ -203,11 +203,17 @@ public class AuthenticationController {
         session.setAttribute(userSessionKey, user.getId());
     }
 
-    @GetMapping(value="/")
-    public String hello(){
-        return "index";
-
-    }
+//    @GetMapping(value="/")
+//    public String getHomePage(){
+//        return "home";
+//
+//    }
+//
+//    @GetMapping(value="/index")
+//    public String getLandingPage(){
+//        return "index";
+//
+//    }
 
     @GetMapping("/register")
     public String displayRegistrationForm(Model model) {
@@ -249,7 +255,7 @@ public class AuthenticationController {
         setUserInSession(request.getSession(), newUser);
         // "redirect:/";
 
-        //return "redirect:/login";
+       // return "redirect:/login";
         return "redirect:/new-user";
 
     }
@@ -296,7 +302,7 @@ public class AuthenticationController {
 
         setUserInSession(request.getSession(), theUser);
 
-        return "redirect:/";
+        return "redirect:/index";
     }
 
     @GetMapping("/logout")
@@ -327,17 +333,17 @@ public class AuthenticationController {
         model.addAttribute(new RegisterFormDTO());
 
         //RegisterFormDTO resetFormDTO = null;
-        String password1 = resetFormDTO.getPassword();
-        String verifyPassword1 = resetFormDTO.getVerifyPassword();
-        if (!password1.equals(verifyPassword1)) {
+        String newPassword = resetFormDTO.getPassword();
+        String verifyNewPassword = resetFormDTO.getVerifyPassword();
+        if (!newPassword.equals(verifyNewPassword)) {
             errors.rejectValue("password", "passwords.mismatch", "Passwords do not match");
-            model.addAttribute("title", "Password");
+            model.addAttribute("title", "New Password");
             return "resetpassword";
         }
 
-        User newUser1 = new User(resetFormDTO.getUsername(), resetFormDTO.getPassword());
-        userRepository.save(newUser1);
-        setUserInSession(request.getSession(), newUser1);
+        User resetNewUser = new User(resetFormDTO.getUsername(), resetFormDTO.getPassword());
+        userRepository.save(resetNewUser);
+        setUserInSession(request.getSession(), resetNewUser);
         return "redirect:/";
     }
 

@@ -49,6 +49,7 @@
                 </label>
                 <p class="error" th:errors="${userProfile.state}"></p>
             </div>
+
 <!--            <div class="col-md-3">-->
 <!--                <label th:for="state" class="form-label">State</label>-->
 <!--                <select class="form-select" id="state" required>-->
@@ -74,9 +75,14 @@
 <!--                </div>-->
 <!--            </div>-->
             <div class="col-12">
-                <button class="btn btn-info"><a th:href="@{'/profile/'}">Cancel</a></button>
+                <button class="btn btn-info"><a th:href="@{'/index'}">Cancel</a></button>
 <!--                <button class="btn btn-primary"><a th:href="@{'/profile/'}">Cancel</a></button>-->
-                <button class="btn btn-success g-3 text-white" type="submit"><a th:href="@{/profile/}">Save</a></button>
+<!--                <button class="btn btn-success g-3 text-white" type="submit"><a th:href="@{/profile/}">Save</a></button>-->
+
+<!--                <button class="btn btn-success g-3 text-white" type="submit">Save</button>-->
+                <input type="submit" value="Save" />
+
+
             </div>
         </form>
             </div>

@@ -19,7 +19,7 @@ public class UserProfile extends AbstractEntity{
     private String email;
     @NotNull
     @NotBlank
-    @Size(min = 10, max = 12, message = "valid phone number" )
+    @Size(min = 10, max = 12, message = "Invalid phone number" )
     private String phone_Number;
     @NotNull
     @NotBlank

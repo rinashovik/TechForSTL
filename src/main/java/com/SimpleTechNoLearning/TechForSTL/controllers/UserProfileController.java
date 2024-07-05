@@ -13,39 +13,50 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-    @RequestMapping(value="/user")
-
-    public class UserProfileController {
-
+@RequestMapping(value="/profile")
+public class UserProfileController {
     @Autowired
     private UserProfileRepository userProfileRepository;
-    @GetMapping(value = "/")
-    public String displayUserProfile(Model model) {
+
+    @GetMapping(value="/")
+    public String displayProfileDetails(Model model){
+
+        model.addAttribute("title", "User Profile");
+        model.addAttribute("userProfiles", userProfileRepository.findAll());
+
+        return "userProfile/index";
+    }
+
+    @GetMapping(value = "/addUser")
+    public String displayCreateNewUserProfileForm(Model model) {
         model.addAttribute(new UserProfile());
-        model.addAttribute("title", "adduser");
-        return "add-user";
+        model.addAttribute("title", "Add User");
+        return "userProfile/add-user";
 
     }
 
-    @PostMapping("/")
-    public String processCreateUserProfileForm(@ModelAttribute @Valid UserProfile newUserProfile, Errors errors, Model model) {
+    @PostMapping("/addUser")
+    public String processCreateNewUserProfileForm(@ModelAttribute @Valid UserProfile newUserProfile, Errors errors, Model model) {
 
         if (errors.hasErrors()) {
-            model.addAttribute("title", "adduser");
+            model.addAttribute("title", "Add User");
 
-            return "add-user";
+            return "userProfile/add-user";
         } else {
 
             model.addAttribute("title", "Profile-List");
             userProfileRepository.save(newUserProfile);
-//            return "redirect:/profile";
             return "redirect:/profile/";
+            // return "profile-list";
+
+            // return "redirect:/addUser/";
 
 
         }
     }
 
-    @GetMapping("/list/{userId}")
+    @GetMapping("/edit/{userId}")
+
     public String displayUserProfiler(Model model, @PathVariable int userId) {
 
 //        if (userId !=null) {
@@ -55,11 +66,12 @@ import java.util.Optional;
             model.addAttribute("userProfile", userProfile);
 
 //            }
-            return "profile-list";
+
+            return "useProfile/edit";
 
         } else {
 
-              model.addAttribute("userProfiles", userProfileRepository.findAll());
+            model.addAttribute("userProfiles", userProfileRepository.findAll());
 
             return "redirect:/";
 
@@ -67,29 +79,30 @@ import java.util.Optional;
 
     }
 
-//
-//    @GetMapping("edit/{id}")
-//    public String showUpdateForm(@PathVariable List<Integer> userIds, Model model) {
-//        List<UserProfile> optUserProfile = (List<UserProfile>) userProfileRepository.findAll();
-////        .orElseThrow(() - > new IllegalArgumentException("Invalid Task Id:" + taskId));
-//        model.addAttribute("userProfile", optUserProfile);
-//        return "update-user";
-//    }
-//
-//
-//    @GetMapping("/delete")
-//    public String renderDeleteTaskForm(Model model) {
-//        model.addAttribute("userProfiles", userProfileRepository.findAll());
-//        return "delete-user";
-//    }
-//
-//    @PostMapping("/delete")
-//    public String processDeleteTaskForm(@RequestParam(required = false) int[] userId) {
-//        for (int id : userId) {
-//            userProfileRepository.deleteById(id);
-//        }
-//        return "redirect:/";
-//    }
+
+    @GetMapping("edit/{id}")
+    public String showUpdateForm(@PathVariable List<Integer> userIds, Model model) {
+        List<UserProfile> optUserProfile = (List<UserProfile>) userProfileRepository.findAll();
+//        .orElseThrow(() - > new IllegalArgumentException("Invalid Task Id:" + taskId));
+        model.addAttribute("userProfile", optUserProfile);
+        return "update-user";
+    }
+
+
+
+    @GetMapping("/")
+    public String renderDeleteTaskForm(Model model) {
+        model.addAttribute("userProfiles", userProfileRepository.findAll());
+        return "user-profile";
+    }
+
+    @PostMapping("/")
+    public String processDeleteTaskForm(@RequestParam(required = false) int[] userId) {
+        for (int id : userId) {
+            userProfileRepository.deleteById(id);
+        }
+        return "redirect:/";
+    }
 
 
 
